@@ -13,7 +13,7 @@ pipeline {
         }
         stage('#3 update drivers') {
             steps {
-                sh 'npm run driver-update'
+                sh 'npm run driver-update:proxy'
             }
         }
         stage('#4 automated tests') {
@@ -21,7 +21,7 @@ pipeline {
                 sh 'npm run test'
             }
         }
-    }
+    }Do
     post {
         always {
             cucumber fileIncludePattern: 'src/**/*.json', sortingMethod: 'ALPHABETICAL'
