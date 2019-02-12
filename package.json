@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "driver-update": "webdriver-manager update",
     "driver-manager": "webdriver-manager update && webdriver-manager start",
     "test": "protractor protractor.conf"
   },

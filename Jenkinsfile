@@ -11,7 +11,12 @@ pipeline {
                 sh 'npm i'
             }
         }
-        stage('#3 automated tests') {
+        stage('#3') {
+            steps {
+                sh 'npm run driver-update'
+            }
+        }
+        stage('#4 automated tests') {
             steps {
                 sh 'npm run test'
             }
