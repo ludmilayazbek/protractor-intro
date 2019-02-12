@@ -24,10 +24,9 @@ pipeline {
     }
     post {
         always {
-            cucumber fileIncludePattern: '**/*.json', sortingMethod: 'ALPHABETICAL'
+            cucumber fileIncludePattern: 'src/**/*.json', sortingMethod: 'ALPHABETICAL'
             junit 'src/**/*.xml'
             script {
-                sh 'rm evidence-files.zip'
                 zip archive: true, dir: 'src/reports', glob: '', zipFile: 'evidence-files.zip'
             }
         }
