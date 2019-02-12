@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "driver-update": "webdriver-manager update",
+    "driver-update": "webdriver-manager update --proxy http://proxylatam.indra/es:8080",
     "driver-manager": "webdriver-manager update && webdriver-manager start",
     "test": "protractor protractor.conf"
   },
