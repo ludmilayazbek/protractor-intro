@@ -11,7 +11,7 @@ pipeline {
                 sh 'npm i'
             }
         }
-        stage('#3') {
+        stage('#3 update drivers') {
             steps {
                 sh 'npm run driver-update'
             }
