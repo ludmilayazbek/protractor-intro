@@ -54,7 +54,7 @@ Then('recebo os resultados da pesquisa', { timeout: 60 * 1000 }, function (done)
       screenshot(browser)
         .then((buffer) => {
           this.attach(buffer, 'image/png');
-          expect(title).be.equal(' - Pesquisa Google');
+          expect(title).be.equal('facebook - Pesquisa Google');
           done();
         })
         .catch((error) => done(error));
