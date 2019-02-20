@@ -1,9 +1,6 @@
 const { Given, When, Then, Before } = require('cucumber');
 const { browser, element, by } = require('protractor');
-const chai = require('chai');
 const { expect } = require('chai');
-const chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
 const { screenshot } = require('../util/util');
 
 Before(function (scenario, done) {
@@ -13,28 +10,30 @@ Before(function (scenario, done) {
   done();
 });
 
-Given('acesso a pagina do google', { timeout: 10 * 1000 }, function (done) {
-  browser.get('http://www.google.com.br')
+Given('acesso a pagina do google', { timeout: 60 * 1000 }, function (done) {
+  browser.get('https://www.google.com.br')
     .then(async () => {
       const title = await browser.getTitle();
-      screenshot(browser, scenarioDetails(), 'acesso a pagina do google')
-        .then(() => {
-          expect(title).equal('Google');
+      screenshot(browser)
+        .then((buffer) => {
+          this.attach(buffer, 'image/png');
+          expect(title).be.equal('Google');
           done();
         })
-        .catch(() => done());
+        .catch((error) => done(error));
     });
 });
 
 
-When('realizo uma pesquisa', { timeout: 10 * 1000 }, function (done) {
+When('realizo uma pesquisa', { timeout: 60 * 1000 }, function (done) {
   element.all(by.name('q'))
     .then(async (elements) => {
       await elements[0]
         .sendKeys('facebook')
         .then(() => {
-          screenshot(browser, scenarioDetails(), 'realizo uma pesquisa')
-            .then(() => {
+          screenshot(browser)
+            .then((buffer) => {
+              this.attach(buffer, 'image/png');
               element(by.name('f'))
                 .submit()
                 .then(() => {
@@ -44,20 +43,21 @@ When('realizo uma pesquisa', { timeout: 10 * 1000 }, function (done) {
                 })
                 .catch(() => done());
             })
-            .catch(() => done());
+            .catch((error) => done(error));
         });
     });
 });
 
-Then('recebo os resultados da pesquisa', { timeout: 10 * 1000 }, function (done) {
+Then('recebo os resultados da pesquisa', { timeout: 60 * 1000 }, function (done) {
   browser.getTitle()
-    .then(() => {
-      screenshot(browser, scenarioDetails(), 'recebo os resultados da pesquisa')
-        .then(() => {
-          expect(title).equal('facebook - Pesquisa Google');
+    .then((title) => {
+      screenshot(browser)
+        .then((buffer) => {
+          this.attach(buffer, 'image/png');
+          expect(title).be.equal(' - Pesquisa Google');
           done();
         })
-        .catch(() => done());
+        .catch((error) => done(error));
     })
-    .catch(() => done());
+    .catch((error) => done(error));
 });
