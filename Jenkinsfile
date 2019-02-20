@@ -11,19 +11,15 @@ pipeline {
                 sh 'npm i'
             }
         }
-        stage('#3 update drivers') {
+        stage('#3 automated tests') {
             steps {
-                sh 'npm run driver-update:proxy'
+                sh 'npm test'
             }
         }
-        stage('#4 automated tests') {
-            steps {
-                sh 'npm run test'
-            }
-        }
-    }Do
+    }
     post {
         always {
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './src/reports/reportFiles', reportFiles: 'chart-results.html', reportName: 'HTML Report', reportTitles: 'Test Results'])
             cucumber fileIncludePattern: 'src/**/*.json', sortingMethod: 'ALPHABETICAL'
             junit 'src/**/*.xml'
             script {
