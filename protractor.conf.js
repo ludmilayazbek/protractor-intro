@@ -23,21 +23,7 @@ exports.config = {
         browser.manage().window().maximize();
     },
     afterLaunch: function () {
-        const reporterHtml = require('cucumber-html-reporter');
         const reporterJunit = require('cucumber-junit-convert');
-
-        const optionsHtml = {
-            brandTitle: 'Smoke Test',
-            columnLayout: 1,
-            name: 'Pesquisa Simples',
-            theme: 'bootstrap',
-            jsonFile: 'src/reports/reportFiles/cucumber.json',
-            output: 'src/reports/reportFiles/chart-results.html',
-            reportSuiteAsScenarios: true,
-            launchReport: true,
-            screenshotsDirectory: 'src/reports/screenshots/',
-            storeScreenshots: true
-        };
 
         const optionsJunit = {
             inputJsonFile: 'src/reports/reportFiles/cucumber.json',
@@ -45,7 +31,6 @@ exports.config = {
         }
 
         reporterJunit.convert(optionsJunit);
-        reporterHtml.generate(optionsHtml);
     },
     cucumberOpts: {
         require: [
