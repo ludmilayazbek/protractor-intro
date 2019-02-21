@@ -12,7 +12,7 @@ exports.config = {
             sslProxy: 'http://proxylatam.indra.es:8080'
         },
         chromeOptions: {
-            args: ['--no-sandbox', '--headless', '--disable-gpu', '--proxy-server=http://proxylatam.indra.es:8080']
+            args: ['--no-sandbox', '--proxy-server=http://proxylatam.indra.es:8080']
         }
     },
     specs: [
