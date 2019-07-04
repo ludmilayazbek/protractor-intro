@@ -7,7 +7,9 @@
     "driver-update:vsts": "webdriver-manager update --versions.chrome 2.42",
     "driver-update:proxy": "webdriver-manager update --proxy http://proxylatam.indra.es:8080",
     "driver-manager": "webdriver-manager update && webdriver-manager start",
-    "test": "protractor protractor.conf"
+    "test": "protractor protractor.conf",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,8 @@
     "webdriver-manager": "^12.1.1"
   },
   "dependencies": {
-    "cucumber-junit-convert": "^1.0.2"
-  }
+    "cucumber-junit-convert": "^1.0.2",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
